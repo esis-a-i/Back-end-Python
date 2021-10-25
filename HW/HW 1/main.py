@@ -35,7 +35,7 @@ class TicTacGame:
         while not self.check_winner():
 
             if self._num_current_move == self.FIELD_SIZE ** 2:
-                print("Draw")
+                print("Draw!")
                 break
 
             if self._current_player == Player.first:
@@ -113,13 +113,13 @@ class TicTacGame:
             for i in range(self.FIELD_SIZE):
                 is_win_side_diagonal *= self._board_player[self._current_player][i][self.FIELD_SIZE - i - 1]
 
-        is_win_gor = True
-        is_win_vert = True
+        is_win_horizon = True
+        is_win_vertical = True
         for i in range(self.FIELD_SIZE):
-            is_win_vert *= self._board_player[self._current_player][i][self._current_move % self.FIELD_SIZE]
-            is_win_gor *= self._board_player[self._current_player][self._current_move // self.FIELD_SIZE][i]
+            is_win_vertical *= self._board_player[self._current_player][i][self._current_move % self.FIELD_SIZE]
+            is_win_horizon *= self._board_player[self._current_player][self._current_move // self.FIELD_SIZE][i]
 
-        return is_win_main_diag + is_win_side_diagonal + is_win_gor + is_win_vert
+        return bool(is_win_main_diag + is_win_side_diagonal + is_win_horizon + is_win_vertical)
 
 
 if __name__ == '__main__':
