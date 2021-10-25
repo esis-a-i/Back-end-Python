@@ -16,7 +16,8 @@ class TicTacGame:
 
         self._board_player = list()
 
-        self._board_player = np.zeros((Player.num_players, self.FIELD_SIZE, self.FIELD_SIZE), dtype=bool)
+        self._board_player = np.zeros((
+            Player.num_players, self.FIELD_SIZE, self.FIELD_SIZE), dtype=bool)
 
         self._current_player = Player.second
         self._current_move = None
@@ -46,17 +47,18 @@ class TicTacGame:
             self.show_board()
 
             print(f"Your turn {player_names[self._current_player]}")
-            print(f"Select a cell")
+            print("Select a cell")
             self._current_move = input()
 
             while not self.validate_input(self._current_move):
                 print("Try again")
                 print(f"Your turn {player_names[self._current_player]}")
-                print(f"Select a cell")
+                print("Select a cell")
                 self._current_move = input()
 
             self._current_move = int(self._current_move)
-            self._board_player[self._current_player][self._current_move // self.FIELD_SIZE][
+            self._board_player[self._current_player][self._current_move
+                                                     // self.FIELD_SIZE][
                 self._current_move % self.FIELD_SIZE] = True
 
             self._num_current_move += 1
@@ -86,11 +88,14 @@ class TicTacGame:
 
         self._current_move = inp
 
-        return self._current_move.isdigit() and not self.FIELD_SIZE ** 2 - 1 < int(self._current_move) and not int(
-            self._current_move) < 0 \
-               and not self._board_player[Player.first][int(self._current_move) // self.FIELD_SIZE][
-            int(self._current_move) % self.FIELD_SIZE] \
-               and not self._board_player[Player.second][int(self._current_move) // self.FIELD_SIZE][
+        return self._current_move.isdigit() and not \
+            self.FIELD_SIZE ** 2 - 1 < int(self._current_move) and not \
+            int(self._current_move) < 0 and not \
+            self._board_player[Player.first][
+            int(self._current_move) // self.FIELD_SIZE][
+            int(self._current_move) % self.FIELD_SIZE] and not \
+            self._board_player[Player.second][
+            int(self._current_move) // self.FIELD_SIZE][
             int(self._current_move) % self.FIELD_SIZE]
 
     def check_winner(self):
@@ -99,11 +104,13 @@ class TicTacGame:
             return False
 
         is_win_main_diag = False
-        if self._current_move % self.FIELD_SIZE == self._current_move // self.FIELD_SIZE:
+        if self._current_move % self.FIELD_SIZE == \
+                self._current_move // self.FIELD_SIZE:
             # main diagonal
             is_win_main_diag = True
             for i in range(self.FIELD_SIZE):
-                is_win_main_diag *= self._board_player[self._current_player][i][i]
+                is_win_main_diag *= \
+                    self._board_player[self._current_player][i][i]
 
         is_win_side_diagonal = False
         if self._current_move % self.FIELD_SIZE == \
@@ -111,15 +118,22 @@ class TicTacGame:
             # side diagonal
             is_win_side_diagonal = True
             for i in range(self.FIELD_SIZE):
-                is_win_side_diagonal *= self._board_player[self._current_player][i][self.FIELD_SIZE - i - 1]
+                is_win_side_diagonal *= \
+                    self._board_player[self._current_player][i][
+                        self.FIELD_SIZE - i - 1]
 
         is_win_horizon = True
         is_win_vertical = True
         for i in range(self.FIELD_SIZE):
-            is_win_vertical *= self._board_player[self._current_player][i][self._current_move % self.FIELD_SIZE]
-            is_win_horizon *= self._board_player[self._current_player][self._current_move // self.FIELD_SIZE][i]
+            is_win_vertical *= \
+                self._board_player[self._current_player][i][
+                    self._current_move % self.FIELD_SIZE]
+            is_win_horizon *= \
+                self._board_player[self._current_player][self._current_move
+                                                         // self.FIELD_SIZE][i]
 
-        return bool(is_win_main_diag + is_win_side_diagonal + is_win_horizon + is_win_vertical)
+        return bool(is_win_main_diag + is_win_side_diagonal
+                    + is_win_horizon + is_win_vertical)
 
 
 if __name__ == '__main__':
