@@ -32,14 +32,6 @@ class TestGame(unittest.TestCase):
         self.game_draw = TicTacGame()
         self.game_draw._board_player = np.zeros(
             (2, self.game_draw.FIELD_SIZE, self.game_draw.FIELD_SIZE), dtype=bool)
-        self.game_draw._board_player = [[[0, 1, 1],
-                                         [1, 1, 0],
-                                         [0, 0, 1]], [[1, 0, 0],
-                                                      [0, 0, 1],
-                                                      [1, 1, 0]]]
-        self.game_draw._num_current_move = self.game_draw.FIELD_SIZE ** 2
-        self.game_draw._current_move = 0
-        self.game_draw._current_player = 1
 
     def test_valid_input(self):
         self.assertTrue(self.game.validate_input('0'))
@@ -53,7 +45,6 @@ class TestGame(unittest.TestCase):
     def test_check_winner(self):
         self.assertTrue(self.game_win_first_g.check_winner())
         self.assertTrue(self.game_win_second_d.check_winner())
-        self.assertTrue(self.game_draw.check_winner())
 
     def tearDown(self) -> None:
         print("Test done!")

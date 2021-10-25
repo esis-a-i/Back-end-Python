@@ -34,6 +34,10 @@ class TicTacGame:
 
         while not self.check_winner():
 
+            if self._num_current_move == self.FIELD_SIZE ** 2:
+                print("Draw")
+                break
+
             if self._current_player == Player.first:
                 self._current_player = Player.second
             else:
@@ -57,10 +61,8 @@ class TicTacGame:
 
             self._num_current_move += 1
 
-        self.show_board()
-        if self._num_current_move == self.FIELD_SIZE ** 2:
-            print("Draw")
         else:
+            self.show_board()
             print(f"You win {player_names[self._current_player]}")
 
     def show_board(self):
@@ -93,9 +95,7 @@ class TicTacGame:
 
     def check_winner(self):
 
-        if self._num_current_move == self.FIELD_SIZE ** 2:
-            return True
-        elif self._num_current_move < 2 * self.FIELD_SIZE - 1:
+        if self._num_current_move < 2 * self.FIELD_SIZE - 1:
             return False
 
         is_win_main_diag = False
