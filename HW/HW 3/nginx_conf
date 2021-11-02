@@ -1,0 +1,14 @@
+server {
+        listen 80;
+
+		location / {
+		        root /data/www;
+		        index static.html;
+		}
+
+		location /API/ {
+		        proxy_pass http://localhost:8000/;
+		    }
+
+        server_name localhost;
+}

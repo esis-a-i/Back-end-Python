@@ -46,6 +46,7 @@ class TicTacGame:
 
             self.show_board()
 
+            # TODO
             print(f"Your turn {player_names[self._current_player]}")
             print("Select a cell")
             self._current_move = input()
@@ -87,6 +88,8 @@ class TicTacGame:
     def validate_input(self, inp):
 
         self._current_move = inp
+
+        # TODO
 
         return self._current_move.isdigit() and not \
             self.FIELD_SIZE ** 2 - 1 < int(self._current_move) and not \
