@@ -24,7 +24,7 @@ static/dist/
 tmp_video/
 devserver.local.config.js
 dump.rdb
-env
+venv
 test
 npm-debug.log*
 *~
@@ -38,7 +38,7 @@ docker-compose.local.yml
 test-journal
 *.tgz
 .webpack.env
-.env
+.venv
 .mypy_cache/
 .component-names.json
 .local-names.json
