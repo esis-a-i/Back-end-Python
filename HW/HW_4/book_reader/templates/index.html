@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Local Library Home</h1>
+
+<h2>Now I have</h2>
+
+  <p>The library has the following record counts:</p>
+  <ul>
+    <li><strong>Books:</strong> {{ num_books }}</li>
+    <li><strong>Authors:</strong> {{ num_authors }}</li>
+    <li><strong>Genre:</strong> {{ num_genre}}</li>
+  </ul>
+
+{% endblock %}
