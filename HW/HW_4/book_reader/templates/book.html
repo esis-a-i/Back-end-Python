@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1> Book list</h1>
+
+{% if book_list %}
+<ul>
+    {% for book in book_list %}
+    <li>        
+        {{ book.title }}
+            {% if book.author %}
+                ({{book.author}})
+            {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>There are no books found.</p>
+{% endif %}
+
+{% endblock %}

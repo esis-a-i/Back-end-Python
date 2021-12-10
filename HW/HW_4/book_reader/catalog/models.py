@@ -13,22 +13,32 @@ class Book(models.Model):
     genre = models.ManyToManyField(
         'Genre', help_text="Select a genre for this book")
 
+    class Meta:
+        ordering = ['-id']
+        verbose_name = 'Book'
+        verbose_name_plural = 'Books'
+
     def __str__(self):
         return self.title
 
-    # def get_absolute_url(self):
-    #     return reverse('book-detail', args=[str(self.id)])
+    def get_absolute_url(self):
+        return reverse('book_detail', args=[str(self)])
 
 
 class Genre(models.Model):
     name = models.CharField(
         max_length=200, help_text="Enter a book genre", verbose_name="Genre")
 
+    class Meta:
+        ordering = ['-id']
+        verbose_name = 'Genre'
+        verbose_name_plural = 'Genres'
+
     def __str__(self):
         return self.name
 
-    # def get_absolute_url(self):
-    #     return reverse("genre_detail", args=[str(self.id)])
+    def get_absolute_url(self):
+        return reverse("genre_detail", args=[str(self)])
 
 
 class Author(models.Model):
@@ -42,8 +52,13 @@ class Author(models.Model):
     date_of_death = models.DateField(
         null=True, blank=True, verbose_name="Date of death")
 
+    class Meta:
+        ordering = ['-id']
+        verbose_name = 'Author'
+        verbose_name_plural = 'Author'
+
     def __str__(self):
         return f'{self.last_name}, {self.first_name}'
 
-    # def get_absolute_url(self):
-    #     return reverse('author-detail', args=[str(self.id)])
+    def get_absolute_url(self):
+        return reverse('author-detail', args=[str(self)])
