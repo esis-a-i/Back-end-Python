@@ -8,15 +8,15 @@ def book(request):
         return get_book_list(request)
     elif request.method == "DELETE":
         delete_book_list(request)
+    elif request.method == "POST":
+        update_book_list(request)
     else:
         return HttpResponseNotAllowed(['GET', 'DELETE'])
 
 
 def delete_book_list(request):
     remove_book = request.body
-    for book in Book.objects.all:
-        if book == remove_book:
-            Book.objects.filter(id=book.id).delete()
+    Book.objects.filter(id=remove_book.id).delete()
 
 
 def get_book_list(request):
@@ -27,6 +27,11 @@ def get_book_list(request):
         'book.html',
         context={'book_list': books},
     )
+
+
+def update_book_list(request):
+    remove_book = request.body
+    Book.objects.filter(id=remove_book.id).update(field_name=remove_book.value)
 
 
 def book_id(request, book_id):
